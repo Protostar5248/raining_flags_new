@@ -31,7 +31,8 @@
     const shuffledFlags=shuffleArray(flags)
     console.log("jhkhj", flags)
     console.log("jhkhj", shuffledFlags)
-    var nTarget=0
+    var nTarget=0;
+    console.log('nTarget',nTarget);
     //var life=10
     
 
@@ -54,16 +55,11 @@
     }
     
 
-    function flagRandomizer(){
-      
-    }
-    function targetFlag(){
-      
-    }
-    function changeTargetFlag(nTarget){ 
-    //shuffleArray(flags);
-    targetCountryName=shuffledFlags[nTarget];
-    nTarget+=1
+    function changeTargetFlag(){ 
+      //shuffleArray(flags);
+      console.log('ntarget',nTarget);
+      targetCountryName=shuffledFlags[nTarget];
+      console.log('ntarget',nTarget);
     }
     function shuffleArray(array){
       let newarray = [...array]
@@ -112,6 +108,7 @@
         y[n]=-80; x[n]=Math.random()*600;
         if (nTarget==n){
         changeTargetFlag(nTarget);
+        nTarget+=1
       } else {
         gameOver();
       }
@@ -134,9 +131,9 @@
         } else if (n==2){
           ctx.drawImage(canada,x[2],y[2],100,80);
         }  else if (n==3){
-          ctx.drawImage(brazil,x[3],y[3],100, 80);
+          ctx.drawImage(brazil,x[3],y[3],100,80);
         }  else {
-          ctx.drawImage(china,x[4],y[4],100, 80);
+          ctx.drawImage(china,x[4],y[4],100,80);
         }
         //console.log(UK)
         y[n]=y[n]+speed[n];
@@ -162,7 +159,7 @@ if (dogX < -80) {
         //ctx.fillStyle = "black";
         //ctx.font="30ps Arial";
         //ctx.fillText("UK", dogX, 400);
-
+        console.log('targetcountryname',targetCountryName);
         ctx.font = '40px Arial'
         ctx.strokeStyle = 'white';
         ctx.lineWidth = 5;
