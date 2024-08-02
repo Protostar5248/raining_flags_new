@@ -24,6 +24,14 @@ var nTarget=0;
 // score
 var score=0;
 
+// game over
+var isGameOver='false';
+var endOfGame='blob';
+
+// you win
+var isYouWin='false';
+var youWinGame='blob';
+
 
 // game timer
 var gameTimer=setInterval(mainLoop,20);
@@ -32,20 +40,26 @@ var gameTimer=setInterval(mainLoop,20);
 // mainloop
 function mainLoop() {
     clearScreenAndShowScore();
-    updateCoordinatesAndDrawFlags();
     rectOffScreen();
     drawTargetFlagTextAndRect();
     changeTargetFlag();
+    updateCoordinatesAndDrawFlags();
+    // gameOver();
 }
+
+
+
+// const y = document.getElementById("")
 
 // event listeners
 document.onkeydown=keyPressed;
 
 
-
+// functions in mainloop
 
 function clearScreenAndShowScore(){
     ctx.clearRect(0, 0, 640, 480);
+    ctx.beginPath()
     ctx.font = '30px Arial'
     ctx.fillStyle = "black";
     ctx.fillText("Score: " + score, 10, 100);
@@ -60,6 +74,14 @@ function updateCoordinatesAndDrawFlags(){
         if(y[n]>480){
             y[n]=-80; x[n]=Math.random()*600;
         }
+    }
+    if (isGameOver=='true'){
+        ctx.clearRect(0,0,640,480);
+        gameOver();
+    }
+    if (isYouWin=='true'){
+        ctx.clearRect(0,0,640,480);
+        youWin();
     }
 }
 
@@ -111,23 +133,42 @@ function checkForHits(n){
          y[n]=-80; x[n]=Math.random()*600;
         if (nTarget==n){
             changeTargetFlag(nTarget);
-            nTarget+=1
+            nTarget+=1;
+            score=nTarget;
+            if (nTarget==shuffledFlags.length){
+                isYouWin='true';
+            }
         } else {
-            gameOver();
+            isGameOver='true';
         }
     }
 }
     
     
-// setTimeout(gameOver,60000);
+
     
 function gameOver(){
     clearInterval(gameTimer);
     ctx.font="80ps Arial";
     ctx.clearRect(0,0,640,480);
-    ctx.fillText("Game Over!",250,230);
+    ctx.fillText("Game Over!",225,50);
+    ctx.fillText("Score: " + score, 255, 100);
+    ctx.fillText(targetCountryName,20,180);
+    var targetCountryImg=document.getElementById(targetCountryName);
+    ctx.drawImage(targetCountryImg,20,220,200,160);
+
 }
 
+
+
+
+function youWin(){
+    clearInterval(gameTimer);
+        ctx.font="80ps Arial";
+        ctx.clearRect(0,0,640,480);
+        ctx.fillText("YOU WIN!",230,230);
+        ctx.fillText("Score: " + score, 255, 280);
+}
 
 
 // utility functions
