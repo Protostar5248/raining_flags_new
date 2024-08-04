@@ -33,6 +33,17 @@ var isYouWin='false';
 var youWinGame='blob';
 
 
+// home page
+ctx.font = '100px Arial'
+ctx.fillStyle = "black";
+ctx.fillText('Raining Flags', 10, 100);
+
+
+
+
+
+
+
 // game timer
 var gameTimer=setInterval(mainLoop,20);
 
@@ -156,7 +167,6 @@ function gameOver(){
     ctx.fillText(targetCountryName,20,180);
     var targetCountryImg=document.getElementById(targetCountryName);
     ctx.drawImage(targetCountryImg,20,220,200,160);
-
 }
 
 
@@ -168,19 +178,15 @@ function youWin(){
         ctx.clearRect(0,0,640,480);
         ctx.fillText("YOU WIN!",230,230);
         ctx.fillText("Score: " + score, 255, 280);
+        var youWinPage=document.getElementById('youWin');
+        ctx.drawImage('you_win',0,0,640,480);
+        
 }
 
 
 // utility functions
 
-function shuffleArray(array){
-    let newarray = [...array]
-    for (let i = newarray.length - 1;i>0;i--){
-      const j=Math.floor(Math.random()*(i+1));
-      [newarray[i], newarray[j]]=[newarray[j], newarray[i]];
-    }
-    return newarray;
-  }
+
 
   function keyPressed(e){
     //console.log('e',e)
@@ -197,3 +203,14 @@ function shuffleArray(array){
     console.log(arrayOfImgs);
     return arrayOfImgs
 }
+
+
+
+function shuffleArray(array){
+    let newarray = [...array]
+    for (let i = newarray.length - 1;i>0;i--){
+      const j=Math.floor(Math.random()*(i+1));
+      [newarray[i], newarray[j]]=[newarray[j], newarray[i]];
+    }
+    return newarray;
+  }

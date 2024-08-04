@@ -1,3 +1,50 @@
 body {
     font-size: 15pt;
+    /* background-color: blue; */
 }
+
+h1 {
+    width: 400px;
+
+}
+
+#main-div {
+    color: blue;
+    /* height:100px; */
+    /* width: 50px; */
+    /* display: flex;
+    flex-direction:column;
+    /* justify-content: center; */
+    /* justify-items: center; */
+  }
+
+  #raining-flags {
+    display:flex;
+    width: 100vw;
+    justify-content: center;
+  }
+
+  #play-button {
+    display:flex;
+    width:100vw;
+    justify-content: center;
+  }
+
+  #home-div {
+    display:flex;
+    width:98vw;
+    justify-content:center;
+  }
+
+  #Home {
+    display:flex;
+    width:640px;
+    justify-content: center;
+  }
+
+  
+  #game-canvas {
+    display:flex;
+    width:98vw;
+    justify-content:center;
+  }
