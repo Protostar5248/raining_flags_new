@@ -42,6 +42,18 @@ h1 {
     justify-content: center;
   }
 
+  #play-again-div {
+    display:flex;
+    width:98vw;
+    justify-content:center;
+  }
+
+  #play-again {
+    display:flex;
+    width:640px;
+    justify-content: center;
+  }
+
   
   #game-canvas {
     display:flex;
