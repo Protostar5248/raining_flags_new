@@ -3,7 +3,8 @@
 var ctx=gameCanvas.getContext("2d");
 
 // flag arrays
-const flags = ['uk','france','brazil','canada','china']
+//const flags=['russia','albania','belgium','bosnia_and_herzegovina','bulgaria','czechia','estonia','france','germany','ireland','italy','lithuania','malta','san_marino','serbia','spain','sweden','switzerland','ukraine','vatican_city']
+ const flags = ['uk','france','brazil','canada','china']
 var x=[100, 200,300,400,500];
 var y=[0,0,0,0,0];
 var speed=[2,1,1.5,3,2.5];
