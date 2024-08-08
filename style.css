@@ -60,3 +60,9 @@ h1 {
     width:98vw;
     justify-content:center;
   }
+
+  #div-canvas-background {
+    display:flex;
+    flex-direction: column
+  }
+
