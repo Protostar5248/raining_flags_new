@@ -51,6 +51,7 @@ nextLevelButton.id = 'nextLevelButton'
 nextLevelButton.addEventListener('click', () => {
     level+=5;
     playGameLevel();
+    nextLevelButton.hidden=true;
 })
 nextLevelButton.hidden=true;
 
@@ -151,6 +152,9 @@ console.log(level);
     function drawTargetFlagTextAndRect(){
         ctx.fillStyle = "gold";
         ctx.fillRect(dogX, 380, 60, 40);
+        var blobImage=document.getElementById('imageOfBlob');
+        //console.log(imageOfBlob);
+        ctx.drawImage(blobImage,dogX+15,380,30,40);
         //ctx.fillStyle = "black";
         //ctx.font="30ps Arial";
         //ctx.fillText("UK", dogX, 400);
@@ -216,6 +220,7 @@ console.log(level);
         ctx.fillText("Game Over!",225,50);
         ctx.fillText("Score: " + score, 255, 100);
         ctx.fillText(targetCountryName,20,180);
+        //var blobImage=document.getElementById(imageOfBlob);
         var targetCountryImg=document.getElementById(targetCountryName);
         ctx.drawImage(targetCountryImg,20,220,200,160);
         
