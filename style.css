@@ -68,18 +68,23 @@ h1 {
 
   #move-right-and-left-div {
     display:flex;
+    
     flex-direction:row-reverse;
-    justify-content: space-around;
+    justify-content: center
     /* border: 2px solid red;  */
   }
 
 #move-right-button-div {
   display:flex;
-  
+
   /* border: 2px solid red; */
 }
 
 #move-left-button-div {
   display:flex;
   /* border: 2px solid red; */
+}
+
+input {
+  font-size: 250px;
 }
