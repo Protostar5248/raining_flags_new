@@ -81,6 +81,11 @@ function ifMoveRightButtonClicked(){
 changeX=4;
 }
 
+function ifMoveLeftButtonClicked(){
+    changeX=-4;
+}
+
+
 
 if (level==0) {
     playGameLevel();

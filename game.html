@@ -14,10 +14,24 @@
     <canvas id="gameCanvas" width="640" height="480"></canvas>
   </div>
 </div>
-<div id="move-right-button-div">
-  <button onclick=ifMoveRightButtonClicked id="moveRightButton">hcvkzhfsjgkfs</button>
+<div id="move-right-and-left-div">
+  <div id="move-right-button-div">
+    <div style='display:none;'>
+    <img id='rightArrow' src='right_arrow.png'>
+    </div>
+    <input style="width: 75px; height: 50px;" id="moveRightButton" type="button" value=">" onclick="ifMoveRightButtonClicked();" />
+    <script>
+      document.getElementById("moveRightButton").onclick = ifMoveRightButtonClicked;
+    </script>
+  </div>
+    
+  <div  id="move-left-button-div">
+    <input id="moveLeftButton" style="width: 75px; height: 50px;" type="button" value="<" onclick="ifMoveLeftButtonClicked();" />
+    <script>
+      document.getElementById("moveLeftButton").onclick = ifMoveLeftButtonClicked;
+    </script>
+  </div>
 </div>
-  
   <div style='display:none;'>
     <!-- <img id='uk' src='flags/UK_flag.JPG'>
     
@@ -49,7 +63,7 @@
 
     <img id='imageOfBlob' src='blob - Copy.png'>
 
-    <img id='afghanistan' src='flags/afghanistan.png'>
+    <!-- <img id='afghanistan' src='flags/afghanistan.png'>
 
     <img id='albania' src='flags/Albania.png'>
     
@@ -63,7 +77,7 @@
     
     <img id='arab_league' src='flags/arab_league.png'>
     
-    <img id='argentina' src='flags/argentina.png'>
+    <img id='argentina' src='flags/argentina.png'> -->
     
     <img id='afghanistan' src='flags/afghanistan.png'>
     
