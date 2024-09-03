@@ -100,8 +100,8 @@ function playGameLevel() {
 
     var x=[100, 200,300,400,500];
     var y=[0,0,0,0,0];
-    var speed=[2,1,1.5,3,2.5];
-    // var speed=[3,2.5,2,1.5,1];
+    // var speed=[2,1,1.5,3,2.5];
+    var speed=[1,0.5,0.75,1.5,1.25];
 
     var dogX=rectX;
 
