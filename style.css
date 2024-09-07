@@ -87,3 +87,12 @@ h1 {
 input {
   font-size: 250px;
 }
+
+p {
+  font-size: 10px;
+  text-align: center;
+}
+
+h5 {
+  text-align: center;
+}
