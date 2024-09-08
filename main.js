@@ -98,7 +98,8 @@ function playGameLevel() {
     isNextLevel='false';
     
 
-    var x=[100, 200,300,400,500];
+    var previousX=[100, 200,300,400,500];
+    var x=shuffleArray(previousX)
     var y=[0,0,0,0,0];
     // var speed=[2,1,1.5,3,2.5];
     var speed=[1,0.5,0.75,1.5,1.25];
