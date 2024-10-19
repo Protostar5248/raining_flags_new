@@ -18,12 +18,14 @@
     <div style='display:none;'>
     <img id='rightArrow' src='right_arrow.png'>
     </div>
-    <input style="width: 320px; height: 480px;" id="moveRightButton" type="button" value=">" onclick="ifMoveRightButtonClicked();" />
+    <input type="image" id="moveRightButton" src="right_arrow.png" onclick="ifMoveRightButtonClicked();" style="width: 320px; height: 480px;"/>
+    <!-- <input style="width: 320px; height: 480px;" id="moveRightButton" type="button" value=">" onclick="ifMoveRightButtonClicked();" /> -->
     <script>
       document.getElementById("moveRightButton").onclick = ifMoveRightButtonClicked;
     </script>
     
-    <input id="moveLeftButton" style="width: 320px; height: 480px;" type="button" value="<" onclick="ifMoveLeftButtonClicked();" />
+    <input type="image" id="moveLeftButton" src="left_arrow.png" onclick="ifMoveLeftButtonClicked();" style="width: 320px; height: 480px;"/>
+    <!-- <input id="moveLeftButton" style="width: 320px; height: 480px;" type="button" value="<" onclick="ifMoveLeftButtonClicked();" /> -->
     <script>
       document.getElementById("moveLeftButton").onclick = ifMoveLeftButtonClicked;
     </script>

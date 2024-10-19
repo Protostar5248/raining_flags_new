@@ -96,7 +96,7 @@ if (level==0) {
 
 function playGameLevel() {
     isNextLevel='false';
-    
+    changeX=0;
 
     var unshuffledX=[100,200,300,400,500];
     var x=shuffleArray(unshuffledX)
