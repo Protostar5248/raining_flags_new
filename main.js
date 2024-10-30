@@ -1,7 +1,13 @@
 
 
 var ctx=gameCanvas.getContext("2d");
-
+var game_width=screen.width-50;
+var game_height=(game_width/8)*6;
+if (game_height>screen.height) {
+    game_height=screen.height-150;
+    game_width=(game_height*8)/6;
+}
+console.log("game_width",game_width)
 // flag arrays
 //const flags=['russia','albania','belgium','bosnia_and_herzegovina','bulgaria','czechia','estonia','france','germany','ireland','italy','lithuania','malta','san-marino','serbia','spain','sweden','switzerland','ukraine','vatican_city']
 //const flags=['afghanistan','albania','algeria','andorra','angola','atigua_and_barbuda','arab_league','argentina','armenia','aruba','australia','austria','azerbaijan','bahamas','bahrain','bangladesh','barbados','belarus','belgium','belize','benin','bhutan','bolivia','bonaire','bosnia_and_herzegovina','botswana','brazil','bruinei','bulgaria','burkina_faso','burundi','cambodia','cameroon','canada','cape_verde','central_african_republic','chad','chile','china','colombia','comoros','costa_rica',"cote_d'ivoire",'croatia','cuba','curacao','cuprus','czechia','democratic_republic_of_congo','denmark','djibouti','dominica','dominican_republic','east_timor','ecuador','egypt','el_salvador','england','equatorial_guinea','eritrea','estonia','ethiopia','europe','faroe_islands','fiji','finland','france','gabon','gambia','georgia','germany','ghana','greece','greenland','grenada','guadeloupe','guam','guatemala','guinea','bissau ']
@@ -43,6 +49,15 @@ var YouWinGame='no'
 
 
 
+//home button
+// const homeButton = document.createElement('button')
+// homeButton.innerText = 'Home'
+// homeButton.id = 'homeButton'
+
+// homeButton.addEventListener('click', () => {
+    
+// })
+
 
 
 // next level button
@@ -77,13 +92,7 @@ div_canvas.insertBefore(nextLevelButton, canvas);
 // div_canvas.insert(moveRightButton, canvas);
 
 
-function ifMoveRightButtonClicked(){
-changeX=4;
-}
 
-function ifMoveLeftButtonClicked(){
-    changeX=-4;
-}
 
 
 
@@ -91,15 +100,26 @@ if (level==0) {
     playGameLevel();
 }
 
+var halfofgame_width=game_width/2;
+var flag_width=game_width/6.4
+var flag_height=game_height/6
+var flaginthecenter=halfofgame_width-(flag_width/2);
 
+var unshuffledX=[flaginthecenter-(flag_width*2),flaginthecenter-flag_width,flaginthecenter,flaginthecenter+flag_width,flaginthecenter+(flag_width*2)];
+    var x=shuffleArray(unshuffledX)
+    console.log("unshuffledX",unshuffledX);
 
+console.log("halfofgame_width",halfofgame_width);
+    console.log("flaginthecenter",flaginthecenter);
+    console.log("flag_width",flag_width);
 
 function playGameLevel() {
     isNextLevel='false';
     changeX=0;
+    console.log("halfofgame_width",halfofgame_width);
+    console.log("flaginthecenter",flaginthecenter);
+    console.log("flag_width",flag_width);
 
-    var unshuffledX=[100,200,300,400,500];
-    var x=shuffleArray(unshuffledX)
     var y=[0,0,0,0,0];
     // var speed=[2,1,1.5,3,2.5];
     var speed=[1,0.5,0.75,1.5,1.25];
@@ -136,7 +156,7 @@ console.log(level);
     // functions in mainloop
 
     function clearScreenAndShowScore(){
-        ctx.clearRect(0, 0, 640, 480);
+        ctx.clearRect(0, 0, game_width, game_height);
         ctx.beginPath()
         ctx.font = '30px Arial'
         ctx.fillStyle = "black";
@@ -147,7 +167,7 @@ console.log(level);
     function updateCoordinatesAndDrawFlags(){
         for (var n=0; n<5; n++){ 
             console.log(flagImgs)
-            ctx.drawImage(flagImgs[n],x[n],y[n],100,80);
+            ctx.drawImage(flagImgs[n],x[n],y[n],flag_width,flag_height);
             y[n]=y[n]+speed[n];
             checkForHits(n);
             flagOffScreen(n);
@@ -168,11 +188,11 @@ console.log(level);
 
 
     function rectOffScreen(){
-        if (dogX > 640) {
+        if (dogX > game_width) {
             dogX = -80;
         }
         if (dogX < -80) {
-            dogX = 640
+            dogX = game_width
         }
     }
     
@@ -232,8 +252,8 @@ console.log(level);
 
 
     function flagOffScreen(n){
-        if(y[n]>480){
-            y[n]=-80; x[n]=Math.random()*600;
+        if(y[n]>game_height){
+            y[n]=-80; x[n]=Math.random()*game_width;
             //newarray+=1;
         }
     }
@@ -244,9 +264,9 @@ console.log(level);
     function gameOver(){
         clearInterval(gameTimer);
         ctx.font="80ps Arial";
-        ctx.clearRect(0,0,640,480);
-        ctx.fillText("Game Over!",225,50);
-        ctx.fillText("Score: " + score, 255, 100);
+        ctx.clearRect(0,0,game_width,game_height);
+        ctx.fillText("Game Over!",halfofgame_width-95,50);
+        ctx.fillText("Score: " + score, halfofgame_width-65, 100);
         ctx.fillText(targetCountryName,20,180);
         //var blobImage=document.getElementById(imageOfBlob);
         var targetCountryImg=document.getElementById(targetCountryName);
@@ -259,8 +279,8 @@ console.log(level);
     function youWin(){
         clearInterval(gameTimer);
         ctx.font="80ps Arial";
-        ctx.clearRect(0,0,640,480);
-        ctx.fillText("You Beat The Game!",180,50);
+        ctx.clearRect(0,0,game_width,game_height);
+        ctx.fillText("You Beat The Game!",halfofgame_width-140,50);
         ctx.fillText("Score: " + score, 255, 100);
     }
 
@@ -270,9 +290,9 @@ console.log(level);
     function NextLevel(){
         clearInterval(gameTimer);
             ctx.font="80ps Arial";
-            ctx.clearRect(0,0,640,480);
-            ctx.fillText("Next Level!",230,230);
-            ctx.fillText("Score: " + score, 255, 280);
+            ctx.clearRect(0,0,game_width,game_height);
+            ctx.fillText("Next Level!",halfofgame_width-90,230);
+            ctx.fillText("Score: " + score, halfofgame_width-65, 280);
             nextLevelButton.hidden=false;
     }
 
