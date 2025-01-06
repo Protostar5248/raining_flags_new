@@ -9,28 +9,44 @@
     <button onclick="location.href = 'game.html';" id="play-again">Play Again</button>
   </div>
   <script>
-    var game_width=screen.width-50;
+
+    var percentWidth=100;
+    var percentHeight=92;
+
+function vh(percentHeight) {
+  var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+  return (percentHeight * h) / 100;
+}
+
+function vw(percentWidth) {
+  var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+  return (percentWidth * w) / 100;
+}
+
+
+    var game_width=vw(percentWidth);
     var game_height=(game_width/8)*6;
-    console.log(game_height)
-    console.log("play-again", document.getElementById("play-again"))
+    // console.log(game_height)
+    // console.log("play-again", document.getElementById("play-again"))
   </script>
   
   <div id="game-canvas">
   <div id='div-canvas-background' style='background-color:rgb(0, 255, 255);'>
-    <canvas id="gameCanvas" width="555" height="480"></canvas>
+    <canvas id="gameCanvas" width="1" height="1"></canvas>
   </div>
 </div>
 
 <script>
-  if (game_height>screen.height) {
-    game_height=screen.height-150;
+  if (game_height>vh(percentHeight)) {
+    var VH=vh(percentHeight);
+    game_height=VH*0.98;
     game_width=(game_height*8)/6;
   }
   console.log(game_height);
   console.log(game_width);
   document.getElementById('gameCanvas').width=game_width;
   document.getElementById('gameCanvas').height=game_height;
-  console.log("gamecanvasstuff", document.getElementById("gameCanvas"))
+  // console.log("gamecanvasstuff", document.getElementById("gameCanvas"))
 
   function ifMoveRightButtonClicked(){
 changeX=4;
@@ -41,23 +57,23 @@ function ifMoveLeftButtonClicked(){
 }
 </script>
 
-<div  id="move-right-and-left-div">
+ <div  id="move-right-and-left-div">
     <div style='display:none;'>
     <img id='rightArrow' src='right_arrow.png'>
     </div>
-    <input type="image" id="moveRightButton" src="right_arrow.png" onclick="ifMoveRightButtonClicked();" style="width: 320px; height: 480px;"/>
+    <!-- <input type="image" id="moveRightButton" src="right_arrow.png" onclick="ifMoveRightButtonClicked();" style="width: 320px; height: 480px;"/> -->
     <!-- <input style="width: 320px; height: 480px;" id="moveRightButton" type="button" value=">" onclick="ifMoveRightButtonClicked();" /> -->
     <script>
-      document.getElementById("moveRightButton").onclick = ifMoveRightButtonClicked;
+      // document.getElementById("moveRightButton").onclick = ifMoveRightButtonClicked;
     </script>
     
-    <input type="image" id="moveLeftButton" src="left_arrow.png" onclick="ifMoveLeftButtonClicked();" style="width: 320px; height: 480px;"/>
+    <!-- <input type="image" id="moveLeftButton" src="left_arrow.png" onclick="ifMoveLeftButtonClicked();" style="width: 320px; height: 480px;"/> -->
     <!-- <input id="moveLeftButton" style="width: 320px; height: 480px;" type="button" value="<" onclick="ifMoveLeftButtonClicked();" /> -->
     <script>
-      document.getElementById("moveLeftButton").onclick = ifMoveLeftButtonClicked;
+      // document.getElementById("moveLeftButton").onclick = ifMoveLeftButtonClicked;
     </script>
 </div>
-<p>Pierre Moutel. BlobCorp. All rights reserved. Trademark.</p>
+<p>Pierre Moutel. BlobCore. All rights reserved. Trademark.</p>
   <div style='display:none;'>
     <!-- <img id='uk' src='flags/UK_flag.JPG'>
     

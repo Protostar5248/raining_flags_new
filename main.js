@@ -1,10 +1,24 @@
 
-
 var ctx=gameCanvas.getContext("2d");
-var game_width=screen.width-50;
+
+var percentWidth=100;
+var percentHeight=92;
+
+function vh(percentHeight) {
+  var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+  return (percentHeight * h) / 100;
+}
+
+function vw(percentWidth) {
+  var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+  return (percentWidth * w) / 100;
+}
+
+var game_width=vw(percentWidth);
 var game_height=(game_width/8)*6;
 if (game_height>screen.height) {
-    game_height=screen.height-150;
+    console.log("ggg")
+    game_height=vh(percentHeight);
     game_width=(game_height*8)/6;
 }
 console.log("game_width",game_width)
@@ -12,12 +26,12 @@ console.log("game_width",game_width)
 //const flags=['russia','albania','belgium','bosnia_and_herzegovina','bulgaria','czechia','estonia','france','germany','ireland','italy','lithuania','malta','san-marino','serbia','spain','sweden','switzerland','ukraine','vatican_city']
 //const flags=['afghanistan','albania','algeria','andorra','angola','atigua_and_barbuda','arab_league','argentina','armenia','aruba','australia','austria','azerbaijan','bahamas','bahrain','bangladesh','barbados','belarus','belgium','belize','benin','bhutan','bolivia','bonaire','bosnia_and_herzegovina','botswana','brazil','bruinei','bulgaria','burkina_faso','burundi','cambodia','cameroon','canada','cape_verde','central_african_republic','chad','chile','china','colombia','comoros','costa_rica',"cote_d'ivoire",'croatia','cuba','curacao','cuprus','czechia','democratic_republic_of_congo','denmark','djibouti','dominica','dominican_republic','east_timor','ecuador','egypt','el_salvador','england','equatorial_guinea','eritrea','estonia','ethiopia','europe','faroe_islands','fiji','finland','france','gabon','gambia','georgia','germany','ghana','greece','greenland','grenada','guadeloupe','guam','guatemala','guinea','bissau ']
 const flags=['afghanistan','albania','algeria','andorra','angola','antigua_and_barbuda','arab_league','argentina','armenia','aruba','australia','austria','azerbaijan','bahamas','bahrain','bangladesh','barbados','belarus','belgium','belize','benin','bhutan','bolivia','bonaire','bosnia_and_herzegovina','botswana','brazil','brunei','bulgaria','burkina_faso','burundi','cambodia','cameroon','Canada','cape_verde','central_african_republic','chad','chile','China','colombia','comoros','costa_rica',"cote_d'ivoire",'croatia','cuba','curacao','cyprus','czechia','democratic_republic_of_congo','denmark','djibouti','dominica','dominican_republic','east_timor','ecuador','egypt','el_salvador','england','equatorial_guinea','eritrea','estonia','ethiopia','europe','faroe_islands','fiji','finland','france','gabon','gambia','georgia','germany','ghana','greece','greenland','grenada','guadeloupe','guam','guatemala','guinea','guinea-bissau','guyana','haiti','honduras','hong_kong','hungary','iceland','india','indonesia','iran','iraq','ireland','israel','italy','jamaica','japan','jordan','kazakhstan','kenya','kiribati','kosovo','kuwait','kyrgyzstan','laos','latvia','lebanon','leichtenstein','lesotho','liberia','libya','lithuania','luxembourg','macao','madagascar','malawi','malaysia','maldives','mali','malta','marshall_islands','mauritania','mauritius','mexico','micronesia','moldova','monaco','mongolia','montenegro','morocco','mozambique','myanmar','namibia','nauru','nepal','netherlands','new_caledonia','new_zealand','nicaragua','niger','nigeria','niue','north_korea','north_macedonia','northern_ireland','northern_mariana_islands','norway','oman','pakistan','palau','palestine','panama','papua_new_guinea','paraguay','peru','philippines','poland','portugal','puerto_rico','qatar','republic_of_congo','romania','russia','rwanda','saba','saint_kitts_and_nevis','saint_lucia','saint_martin','saint_vincent_and_the_grenadines','samoa','san-marino','sao_tome_and_principe','saudi_arabia','scotland','senegal','serbia','seychelles','sierra_leone','singapore','slovakia','slovenia','solomon_islands','somalia','south_africa','south_korea','south_sudan','spain','sri_lanka','st_eustatius','st_patrick','sudan','suriname','swaziland','sweden','switzerland','syria','taiwan','tajikistan','tanzania','thailand','togo','tonga','trinidad_and_tobago','tunasia','turkey','turkmenistan','tuvalu','uganda','Uk','ukraine','united_arab_emirates','united_states','uruguay','uzbekistan','vanuatu','vatican_city','venezuela','vietnam','wales','yemen','zambia','zimbabwe']
-console.log(flags)
+// console.log(flags)
 //const flags = ['uk','france','brazil','canada','china']
 
 const shuffledFlags=shuffleArray(flags)
 const shuffledFlagImgs=idArrayToImgArray(shuffledFlags);
-console.log(shuffledFlagImgs)
+// console.log(shuffledFlagImgs)
 
 // bucket position
 var rectWidth = 60
@@ -96,6 +110,7 @@ div_canvas.insertBefore(nextLevelButton, canvas);
 
 
 
+
 if (level==0) {
     playGameLevel();
 }
@@ -106,19 +121,15 @@ var flag_height=game_height/6
 var flaginthecenter=halfofgame_width-(flag_width/2);
 
 var unshuffledX=[flaginthecenter-(flag_width*2),flaginthecenter-flag_width,flaginthecenter,flaginthecenter+flag_width,flaginthecenter+(flag_width*2)];
-    var x=shuffleArray(unshuffledX)
-    console.log("unshuffledX",unshuffledX);
-
+var x=shuffleArray(unshuffledX)
+// console.log("unshuffledX",unshuffledX);
 console.log("halfofgame_width",halfofgame_width);
-    console.log("flaginthecenter",flaginthecenter);
-    console.log("flag_width",flag_width);
+console.log("flaginthecenter",flaginthecenter);
+console.log("flag_width",flag_width);
 
 function playGameLevel() {
     isNextLevel='false';
     changeX=0;
-    console.log("halfofgame_width",halfofgame_width);
-    console.log("flaginthecenter",flaginthecenter);
-    console.log("flag_width",flag_width);
 
     var y=[0,0,0,0,0];
     // var speed=[2,1,1.5,3,2.5];
@@ -166,7 +177,7 @@ console.log(level);
 
     function updateCoordinatesAndDrawFlags(){
         for (var n=0; n<5; n++){ 
-            console.log(flagImgs)
+            
             ctx.drawImage(flagImgs[n],x[n],y[n],flag_width,flag_height);
             y[n]=y[n]+speed[n];
             checkForHits(n);
@@ -196,17 +207,18 @@ console.log(level);
         }
     }
     
-
+    var rectWidth=game_width/12
+    var rectHeight=game_height/12;
+    var checkforhitsvar0=(game_height/1.2)-rectHeight
     function drawTargetFlagTextAndRect(){
         ctx.fillStyle = "gold";
-        ctx.fillRect(dogX, 380, 60, 40);
+        ctx.fillRect(dogX, game_height/1.2, rectWidth, rectHeight);
         var blobImage=document.getElementById('imageOfBlob');
         //console.log(imageOfBlob);
-        ctx.drawImage(blobImage,dogX+15,380,30,40);
+        ctx.drawImage(blobImage,dogX+(game_width/24),game_height/1.2,30,40);
         //ctx.fillStyle = "black";
         //ctx.font="30ps Arial";
         //ctx.fillText("UK", dogX, 400);
-        console.log('targetcountryname',targetCountryName);
         ctx.font = '40px Arial'
         ctx.strokeStyle = 'white';
         ctx.lineWidth = 5;
@@ -220,18 +232,16 @@ console.log(level);
 
     function changeTargetFlag(){ 
         //shuffleArray(flags);
-        console.log('ntarget',nTarget);
         targetCountryName=shuffledFlags[nTarget];
-        console.log('ntarget',nTarget);
     }
 
     
-
+    var checkforhitsvar1=game_height/1.2;
     function checkForHits(n){
         // this is first checking if the first flag and the bucket are touching then putting the flag back at the top.
         // if((Math.abs(300-y[0] )<1)&&
-        if((300<y[n]) && (y[n]<420) &&      
-        (Math.abs(dogX-x[n])<60)){
+        if((checkforhitsvar0>(y[n])) && ((y[n]+flag_height)>checkforhitsvar1) &&      
+        (Math.abs(dogX-x[n])<flag_width)){
             // score+=2;
             y[n]=-80; x[n]=Math.random()*600;
             if (nTarget-level==n){
@@ -252,7 +262,7 @@ console.log(level);
 
 
     function flagOffScreen(n){
-        if(y[n]>game_height){
+        if(y[n]>game_height-30){
             y[n]=-80; x[n]=Math.random()*game_width;
             //newarray+=1;
         }
@@ -313,7 +323,6 @@ console.log(level);
     for (var a=0; a<arrayOfIds.length; a++){
         arrayOfImgs[a]=document.getElementById(arrayOfIds[a])
     }
-    console.log(arrayOfImgs);
     return arrayOfImgs
 }
 
