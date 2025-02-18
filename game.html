@@ -1,13 +1,46 @@
 <!DOCTYPE html>
 <html>
     <link rel="stylesheet" href="style.css">
-  <audio id='beep' src='https://maxw.com/beep2.mp3'></audio>
   <div id="home-div">
     <button onclick="location.href = 'index.html';" id="Home">Home</button>
   </div>
   <div id="play-again-div">
     <button onclick="location.href = 'game.html';" id="play-again">Play Again</button>
   </div>
+
+  <div id="rlbuttondiv">
+
+    <div id="leftbuttondiv">
+      <button onclick="ifMoveLeftButtonClicked();" id="move_left"></button>
+    </div>
+
+    <div id="rightbuttondiv">
+      <button onclick="ifMoveRightButtonClicked();" id="move_right"></button>
+    </div>
+
+  </div>
+  <style>
+    #rlbuttondiv {
+      width:98vw;
+      height:100vh;
+      position:absolute;
+      z-index: 2;
+    }
+    #move_left {
+      width: 49vw;
+      height: 98vh;
+    }
+
+    #move_right {
+      width: 49vw;
+      height: 98vh;
+    }
+
+    #game-canvas {
+      position:relative;
+    }
+  </style>
+
   <script>
 
     var percentWidth=100;
@@ -53,7 +86,7 @@ changeX=4;
 }
 
 function ifMoveLeftButtonClicked(){
-    changeX=-4;
+  changeX=-4;
 }
 </script>
 
@@ -75,33 +108,6 @@ function ifMoveLeftButtonClicked(){
 </div>
 <p>Pierre Moutel. BlobCore. All rights reserved. Trademark.</p>
   <div style='display:none;'>
-    <!-- <img id='uk' src='flags/UK_flag.JPG'>
-    
-    <img id='france' src='flags/France.JPG'>
-    <img id='brazil' src='flags/Brazil.JPG'>
-    <img id='china' src='flags/China.JPG'>
-    <img id='canada' src='flags/Canada.png'>
-    <img id='youWin' src='you_win.jpg'>
-    <img id='albania' src='flags/Albania.png'>
-    <img id='belgium' src='flags/belgium.jpg'>
-    <img id='bosnia' src='flags/bosnia_and_herzegovina.jpg'>
-    <img id='bulgaria' src='flags/bulgaria.png'>
-    <img id='czechia' src='flags/czechia.png'>
-    <img id='estonia' src='flags/estonia.png'>
-    <img id='germany' src='flags/germany.png'>
-    <img id='ireland' src='flags/ireland.png'>
-    <img id='italy' src='flags/italy.png'>
-    <img id='lithuania' src='flags/lithuania.png'>
-    <img id='malta' src='flags/malta.png'>
-    <img id='russia' src='flags/russia.png'>
-    <img id='san-marino' src='flags/san-marino.png'>
-    <img id='serbia' src='flags/serbia.png'>
-    <img id='spain' src='flags/spain.png'>
-    <img id='sweden' src='flags/sweden.png'>
-    <img id='switzerland' src='flags/switzerland.png'>
-    <img id='ukraine' src='flags/ukraine.png'>
-    <img id='vatican-city' src='flags/vatican-city.png'>
-    <img id=afghanistan src=afghanistan.png> -->
 
     <img id='imageOfBlob' src='blob - Copy.png'>
 
