@@ -10,13 +10,13 @@
 
   <div id="rlbuttondiv">
 
-    <div id="leftbuttondiv">
+    <!-- <div id="leftbuttondiv"> -->
       <button onclick="ifMoveLeftButtonClicked();" id="move_left"></button>
-    </div>
+    <!-- </div> -->
 
-    <div id="rightbuttondiv">
+    <!-- <div id="rightbuttondiv"> -->
       <button onclick="ifMoveRightButtonClicked();" id="move_right"></button>
-    </div>
+    <!-- </div> -->
 
   </div>
   <style>
@@ -25,15 +25,18 @@
       height:100vh;
       position:absolute;
       z-index: 2;
+      display: flex;
     }
     #move_left {
-      width: 49vw;
-      height: 98vh;
+      flex:1;
+      /* width: 49vw; */
+      /* height: 98vh; */
     }
 
     #move_right {
-      width: 49vw;
-      height: 98vh;
+      flex:1;
+      /* width: 49vw; */
+      /* height: 98vh; */
     }
 
     #game-canvas {
