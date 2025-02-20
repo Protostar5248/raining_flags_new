@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html>
-
-
-  <div id="header">
+  <head>
     <link rel="stylesheet" href="style.css">
-  <div id="home-div">
+  </head>
+
+<body>
+  <div id="header">
+
     <button onclick="location.href = 'index.html';" id="Home">Home</button>
-  </div>
-  <div id="play-again-div">
+
     <button onclick="location.href = 'game.html';" id="play-again">Play Again</button>
-  </div>
-  <div id="hellodiv">
-    <button id="hello">hello</button>
-  </div>
+  
+    <button id="nextlevelbutton" onclick="nextlevelclicked();" hidden>Next Level!</button>
+  
+    <!-- <button id="hello">hello</button> -->
+
 </div>
 
-<div id="body"></div>
+<div id="content">
   <div id="rlbuttondiv">
 
     <!-- <div id="leftbuttondiv"> -->
@@ -27,64 +29,24 @@
     <!-- </div> -->
 
   </div>
-  <style>
-    
-
-    #rlbuttondiv {
-      width:98vw;
-      height:100vh;
-      position:absolute;
-      z-index: 2;
-      display: flex;
-    }
-    #move_left {
-      flex:1;
-      opacity: 0;
-      /* width: 49vw; */
-      /* height: 98vh; */
-    }
-
-    #move_right {
-      flex:1;
-      opacity: 0;
-      /* width: 49vw; */
-      /* height: 98vh; */
-    }
-
-    #game-canvas {
-      position:relative;
-      z-index: 1;
-    }
-
-    #main.js {
-      z-index:3;
-    }
-
-    #hellodiv {
-      position: absolute;
-      opacity:0;
-    }
-
-    
-  </style>
 
   <script>
 
     var percentWidth=100;
     var percentHeight=92;
 
-function vh(percentHeight) {
+function ch(percentHeight) {
   var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
   return (percentHeight * h) / 100;
 }
 
-function vw(percentWidth) {
+function cw(percentWidth) {
   var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
   return (percentWidth * w) / 100;
 }
 
 
-    var game_width=vw(percentWidth);
+    var game_width=cw(percentWidth);
     var game_height=(game_width/8)*6;
     // console.log(game_height)
     // console.log("play-again", document.getElementById("play-again"))
@@ -97,9 +59,9 @@ function vw(percentWidth) {
 </div>
 
 <script>
-  if (game_height>vh(percentHeight)) {
-    var VH=vh(percentHeight);
-    game_height=VH*0.98;
+  if (game_height>ch(percentHeight)) {
+    var cha=ch(percentHeight);
+    game_height=cha*0.98;
     game_width=(game_height*8)/6;
   }
   console.log(game_height);
@@ -607,4 +569,5 @@ function ifMoveLeftButtonClicked(){
 <div id="footer">
   <p>Pierre Moutel. BlobCore. All rights reserved. Trademark.</p>
 </div>
+</body>
 </html>
