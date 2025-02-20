@@ -1,65 +1,67 @@
 
-var ctx=gameCanvas.getContext("2d");
+var ctx = gameCanvas.getContext("2d");
 
-var percentWidth=100;
-var percentHeight=92;
+var percentWidth = 100;
+var percentHeight = 92;
 
 function vh(percentHeight) {
-  var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-  return (percentHeight * h) / 100;
+    var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+    return (percentHeight * h) / 100;
 }
 
 function vw(percentWidth) {
-  var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-  return (percentWidth * w) / 100;
+    var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    return (percentWidth * w) / 100;
 }
 
-var game_width=vw(percentWidth);
-var game_height=(game_width/8)*6;
-if (game_height>screen.height) {
+var game_width = vw(percentWidth);
+var game_height = (game_width / 8) * 6;
+if (game_height > screen.height) {
     console.log("ggg")
-    game_height=vh(percentHeight);
-    game_width=(game_height*8)/6;
+    game_height=0
+    game_width=0
+    game_height = vh(percentHeight);
+    game_width = (game_height * 8) / 6;
 }
-console.log("game_width",game_width)
+console.log("game_width", game_width)
 // flag arrays
 //const flags=['russia','albania','belgium','bosnia_and_herzegovina','bulgaria','czechia','estonia','france','germany','ireland','italy','lithuania','malta','san-marino','serbia','spain','sweden','switzerland','ukraine','vatican_city']
 //const flags=['afghanistan','albania','algeria','andorra','angola','atigua_and_barbuda','arab_league','argentina','armenia','aruba','australia','austria','azerbaijan','bahamas','bahrain','bangladesh','barbados','belarus','belgium','belize','benin','bhutan','bolivia','bonaire','bosnia_and_herzegovina','botswana','brazil','bruinei','bulgaria','burkina_faso','burundi','cambodia','cameroon','canada','cape_verde','central_african_republic','chad','chile','china','colombia','comoros','costa_rica',"cote_d'ivoire",'croatia','cuba','curacao','cuprus','czechia','democratic_republic_of_congo','denmark','djibouti','dominica','dominican_republic','east_timor','ecuador','egypt','el_salvador','england','equatorial_guinea','eritrea','estonia','ethiopia','europe','faroe_islands','fiji','finland','france','gabon','gambia','georgia','germany','ghana','greece','greenland','grenada','guadeloupe','guam','guatemala','guinea','bissau ']
-const flags=['afghanistan','albania','algeria','andorra','angola','antigua_and_barbuda','arab_league','argentina','armenia','aruba','australia','austria','azerbaijan','bahamas','bahrain','bangladesh','barbados','belarus','belgium','belize','benin','bhutan','bolivia','bonaire','bosnia_and_herzegovina','botswana','brazil','brunei','bulgaria','burkina_faso','burundi','cambodia','cameroon','Canada','cape_verde','central_african_republic','chad','chile','China','colombia','comoros','costa_rica',"cote_d'ivoire",'croatia','cuba','curacao','cyprus','czechia','democratic_republic_of_congo','denmark','djibouti','dominica','dominican_republic','east_timor','ecuador','egypt','el_salvador','england','equatorial_guinea','eritrea','estonia','ethiopia','europe','faroe_islands','fiji','finland','france','gabon','gambia','georgia','germany','ghana','greece','greenland','grenada','guadeloupe','guam','guatemala','guinea','guinea-bissau','guyana','haiti','honduras','hong_kong','hungary','iceland','india','indonesia','iran','iraq','ireland','israel','italy','jamaica','japan','jordan','kazakhstan','kenya','kiribati','kosovo','kuwait','kyrgyzstan','laos','latvia','lebanon','leichtenstein','lesotho','liberia','libya','lithuania','luxembourg','macao','madagascar','malawi','malaysia','maldives','mali','malta','marshall_islands','mauritania','mauritius','mexico','micronesia','moldova','monaco','mongolia','montenegro','morocco','mozambique','myanmar','namibia','nauru','nepal','netherlands','new_caledonia','new_zealand','nicaragua','niger','nigeria','niue','north_korea','north_macedonia','northern_ireland','northern_mariana_islands','norway','oman','pakistan','palau','palestine','panama','papua_new_guinea','paraguay','peru','philippines','poland','portugal','puerto_rico','qatar','republic_of_congo','romania','russia','rwanda','saba','saint_kitts_and_nevis','saint_lucia','saint_martin','saint_vincent_and_the_grenadines','samoa','san-marino','sao_tome_and_principe','saudi_arabia','scotland','senegal','serbia','seychelles','sierra_leone','singapore','slovakia','slovenia','solomon_islands','somalia','south_africa','south_korea','south_sudan','spain','sri_lanka','st_eustatius','st_patrick','sudan','suriname','swaziland','sweden','switzerland','syria','taiwan','tajikistan','tanzania','thailand','togo','tonga','trinidad_and_tobago','tunasia','turkey','turkmenistan','tuvalu','uganda','Uk','ukraine','united_arab_emirates','united_states','uruguay','uzbekistan','vanuatu','vatican_city','venezuela','vietnam','wales','yemen','zambia','zimbabwe']
+const flags = ['afghanistan', 'albania', 'algeria', 'andorra', 'angola', 'antigua_and_barbuda', 'arab_league', 'argentina', 'armenia', 'aruba', 'australia', 'austria', 'azerbaijan', 'bahamas', 'bahrain', 'bangladesh', 'barbados', 'belarus', 'belgium', 'belize', 'benin', 'bhutan', 'bolivia', 'bonaire', 'bosnia_and_herzegovina', 'botswana', 'brazil', 'brunei', 'bulgaria', 'burkina_faso', 'burundi', 'cambodia', 'cameroon', 'Canada', 'cape_verde', 'central_african_republic', 'chad', 'chile', 'China', 'colombia', 'comoros', 'costa_rica', "cote_d'ivoire", 'croatia', 'cuba', 'curacao', 'cyprus', 'czechia', 'democratic_republic_of_congo', 'denmark', 'djibouti', 'dominica', 'dominican_republic', 'east_timor', 'ecuador', 'egypt', 'el_salvador', 'england', 'equatorial_guinea', 'eritrea', 'estonia', 'ethiopia', 'europe', 'faroe_islands', 'fiji', 'finland', 'france', 'gabon', 'gambia', 'georgia', 'germany', 'ghana', 'greece', 'greenland', 'grenada', 'guadeloupe', 'guam', 'guatemala', 'guinea', 'guinea-bissau', 'guyana', 'haiti', 'honduras', 'hong_kong', 'hungary', 'iceland', 'india', 'indonesia', 'iran', 'iraq', 'ireland', 'israel', 'italy', 'jamaica', 'japan', 'jordan', 'kazakhstan', 'kenya', 'kiribati', 'kosovo', 'kuwait', 'kyrgyzstan', 'laos', 'latvia', 'lebanon', 'leichtenstein', 'lesotho', 'liberia', 'libya', 'lithuania', 'luxembourg', 'macao', 'madagascar', 'malawi', 'malaysia', 'maldives', 'mali', 'malta', 'marshall_islands', 'mauritania', 'mauritius', 'mexico', 'micronesia', 'moldova', 'monaco', 'mongolia', 'montenegro', 'morocco', 'mozambique', 'myanmar', 'namibia', 'nauru', 'nepal', 'netherlands', 'new_caledonia', 'new_zealand', 'nicaragua', 'niger', 'nigeria', 'niue', 'north_korea', 'north_macedonia', 'northern_ireland', 'northern_mariana_islands', 'norway', 'oman', 'pakistan', 'palau', 'palestine', 'panama', 'papua_new_guinea', 'paraguay', 'peru', 'philippines', 'poland', 'portugal', 'puerto_rico', 'qatar', 'republic_of_congo', 'romania', 'russia', 'rwanda', 'saba', 'saint_kitts_and_nevis', 'saint_lucia', 'saint_martin', 'saint_vincent_and_the_grenadines', 'samoa', 'san-marino', 'sao_tome_and_principe', 'saudi_arabia', 'scotland', 'senegal', 'serbia', 'seychelles', 'sierra_leone', 'singapore', 'slovakia', 'slovenia', 'solomon_islands', 'somalia', 'south_africa', 'south_korea', 'south_sudan', 'spain', 'sri_lanka', 'st_eustatius', 'st_patrick', 'sudan', 'suriname', 'swaziland', 'sweden', 'switzerland', 'syria', 'taiwan', 'tajikistan', 'tanzania', 'thailand', 'togo', 'tonga', 'trinidad_and_tobago', 'tunasia', 'turkey', 'turkmenistan', 'tuvalu', 'uganda', 'Uk', 'ukraine', 'united_arab_emirates', 'united_states', 'uruguay', 'uzbekistan', 'vanuatu', 'vatican_city', 'venezuela', 'vietnam', 'wales', 'yemen', 'zambia', 'zimbabwe']
 // console.log(flags)
 //const flags = ['uk','france','brazil','canada','china']
 
-const shuffledFlags=shuffleArray(flags)
-const shuffledFlagImgs=idArrayToImgArray(shuffledFlags);
+const shuffledFlags = shuffleArray(flags)
+const shuffledFlagImgs = idArrayToImgArray(shuffledFlags);
 // console.log(shuffledFlagImgs)
 
 // bucket position
 var rectWidth = 60
 var centreX = gameCanvas.width / 2
 var rectX = centreX - rectWidth / 2
-var changeX=0;
+var changeX = 0;
 
 // target
-var targetCountryName='UK';
-var nTarget=0;
+var targetCountryName = 'UK';
+var nTarget = 0;
 
 // score
-var score=0;
+var score = 0;
 
 // game over
-var isGameOver='false';
-var endOfGame='no';
+var isGameOver = 'false';
+var endOfGame = 'no';
 
 // next level
-var isNextLevel='false';
-var nextLevel='no';
-var level=0;
+var isNextLevel = 'false';
+var nextLevel = 'no';
+var level = 0;
 // var newflag=level*5;
 // const flagsOnScreen=[shuffledFlagImgs[newflag],shuffledFlagImgs[newflag+1],shuffledFlagImgs[newflag+2],shuffledFlagImgs[newflag+3],shuffledFlagImgs[newflag+4]]
 
 // you win
-var isYouWin='false';
-var YouWinGame='no'
+var isYouWin = 'false';
+var YouWinGame = 'no'
 
 
 
@@ -69,7 +71,7 @@ var YouWinGame='no'
 // homeButton.id = 'homeButton'
 
 // homeButton.addEventListener('click', () => {
-    
+
 // })
 
 
@@ -80,13 +82,16 @@ nextLevelButton.innerText = 'Next Level'
 nextLevelButton.id = 'nextLevelButton'
 
 nextLevelButton.addEventListener('click', () => {
-    level+=5;
+    level += 5;
     playGameLevel();
-    nextLevelButton.hidden=true;
+    nextLevelButton.hidden = true;
+    Element.style.position='relative';
+    
 })
-nextLevelButton.hidden=true;
-
-
+nextLevelButton.hidden = true;
+nextLevelButton.style.display='flex';
+nextLevelButton.style.justifyContent='center';
+nextLevelButton.style.width=window.innerWidth/2;
 
 
 
@@ -99,52 +104,59 @@ nextLevelButton.hidden=true;
 // moveRightButton.addEventListener('click', () => {
 //     changeX=4;
 // })
-const div_canvas=document.getElementById('div-canvas-background');
-const canvas=document.getElementById('gameCanvas');
-div_canvas.insertBefore(nextLevelButton, canvas);
-
+const div_canvas = document.getElementById('div-canvas-background');
+const canvas = document.getElementById('gameCanvas');
+const playAgainDiv =document.getElementById('play-again-div')
+const hello = document.getElementById('hellodiv');
+const header= document.getElementById('header');
+function insertAfternextlevelbutton() {
+header.insertBefore(nextLevelButton, hello);
+}
 // div_canvas.insert(moveRightButton, canvas);
 
+insertAfternextlevelbutton(nextLevelButton);
 
 
 
 
 
-
-if (level==0) {
+if (level == 0) {
     playGameLevel();
 }
 
-var halfofgame_width=game_width/2;
-var flag_width=game_width/6.4
-var flag_height=game_height/6
-var flaginthecenter=halfofgame_width-(flag_width/2);
+var halfofgame_width = game_width / 2;
+var flag_width = game_width / 6.4
+var flag_height = game_height / 6
+var flaginthecenter = halfofgame_width - (flag_width / 2);
 
-var unshuffledX=[flaginthecenter-(flag_width*2),flaginthecenter-flag_width,flaginthecenter,flaginthecenter+flag_width,flaginthecenter+(flag_width*2)];
-var x=shuffleArray(unshuffledX)
+var unshuffledX = [flaginthecenter - (flag_width * 2), flaginthecenter - flag_width, flaginthecenter, flaginthecenter + flag_width, flaginthecenter + (flag_width * 2)];
+var x = shuffleArray(unshuffledX)
 // console.log("unshuffledX",unshuffledX);
-console.log("halfofgame_width",halfofgame_width);
-console.log("flaginthecenter",flaginthecenter);
-console.log("flag_width",flag_width);
+console.log("halfofgame_width", halfofgame_width);
+console.log("flaginthecenter", flaginthecenter);
+console.log("flag_width", flag_width);
+
+var y = [0, 0, 0, 0, 0];
+
 
 function playGameLevel() {
-    isNextLevel='false';
-    changeX=0;
+    isNextLevel = 'false';
+    changeX = 0;
 
-    var y=[0,0,0,0,0];
+
     // var speed=[2,1,1.5,3,2.5];
-    var speed=[1,0.5,0.75,1.5,1.25];
+    var speed = [1, 0.5, 0.75, 1.5, 1.25];
 
-    var dogX=rectX;
+    var dogX = rectX;
 
-    var flagImgs=[shuffledFlagImgs[level],shuffledFlagImgs[level+1],shuffledFlagImgs[level+2],shuffledFlagImgs[level+3],shuffledFlagImgs[level+4]]
-    
+    var flagImgs = [shuffledFlagImgs[level], shuffledFlagImgs[level + 1], shuffledFlagImgs[level + 2], shuffledFlagImgs[level + 3], shuffledFlagImgs[level + 4]]
+
 
 
 
     // game timer
-    var gameTimer=setInterval(mainLoop,20);
-console.log(level);
+
+    console.log(level);
 
     // mainloop
     function mainLoop() {
@@ -156,16 +168,16 @@ console.log(level);
         // gameOver();
     }
 
-
+    var gameTimer = setInterval(mainLoop, 20);
     // const y = document.getElementById("")
 
     // event listeners
-    document.onkeydown=keyPressed;
+    document.onkeydown = keyPressed;
 
 
     // functions in mainloop
 
-    function clearScreenAndShowScore(){
+    function clearScreenAndShowScore() {
         ctx.clearRect(0, 0, game_width, game_height);
         ctx.beginPath()
         ctx.font = '30px Arial'
@@ -174,30 +186,30 @@ console.log(level);
     }
 
 
-    function updateCoordinatesAndDrawFlags(){
-        for (var n=0; n<5; n++){ 
-            
-            ctx.drawImage(flagImgs[n],x[n],y[n],flag_width,flag_height);
-            y[n]=y[n]+speed[n];
+    function updateCoordinatesAndDrawFlags() {
+        for (var n = 0; n < 5; n++) {
+
+            ctx.drawImage(flagImgs[n], x[n], y[n], flag_width, flag_height);
+            y[n] = y[n] + speed[n];
             checkForHits(n);
             flagOffScreen(n);
         }
-        if (isGameOver=='true'){
-            ctx.clearRect(0,0,640,480);
+        if (isGameOver == 'true') {
+            ctx.clearRect(0, 0, 640, 480);
             gameOver();
         }
-        if (isNextLevel=='true'){
-            ctx.clearRect(0,0,640,480);
+        if (isNextLevel == 'true') {
+            ctx.clearRect(0, 0, 640, 480);
             NextLevel();
         }
-        if (isYouWin=='true'){
-            ctx.clearRect(0,0,640,480);
+        if (isYouWin == 'true') {
+            ctx.clearRect(0, 0, 640, 480);
             youWin();
         }
     }
 
 
-    function rectOffScreen(){
+    function rectOffScreen() {
         if (dogX > game_width) {
             dogX = -80;
         }
@@ -205,16 +217,15 @@ console.log(level);
             dogX = game_width
         }
     }
-    
-    var rectWidth=game_width/12
-    var rectHeight=game_height/12;
-    var checkforhitsvar0=(game_height/1.2)-rectHeight
-    function drawTargetFlagTextAndRect(){
+
+    var rectWidth = game_width / 12
+    var rectHeight = game_height / 12;
+    function drawTargetFlagTextAndRect() {
         ctx.fillStyle = "gold";
-        ctx.fillRect(dogX, game_height/1.2, rectWidth, rectHeight);
-        var blobImage=document.getElementById('imageOfBlob');
+        ctx.fillRect(dogX, game_height / 1.2, rectWidth, rectHeight);
+        var blobImage = document.getElementById('imageOfBlob');
         //console.log(imageOfBlob);
-        ctx.drawImage(blobImage,dogX+(game_width/24),game_height/1.2,30,40);
+        ctx.drawImage(blobImage, dogX + (game_width / 24), game_height / 1.2, 30, 40);
         //ctx.fillStyle = "black";
         //ctx.font="30ps Arial";
         //ctx.fillText("UK", dogX, 400);
@@ -229,109 +240,110 @@ console.log(level);
     }
 
 
-    function changeTargetFlag(){ 
+    function changeTargetFlag() {
         //shuffleArray(flags);
-        targetCountryName=shuffledFlags[nTarget];
+        targetCountryName = shuffledFlags[nTarget];
     }
 
-    
-    var checkforhitsvar1=game_height/1.2;
-    function checkForHits(n){
+    var checkforhitsvar0 = (game_height / 1.2) - rectHeight;
+    var checkforhitsvar1 = game_height / 1.2;
+    function checkForHits(n) {
         // this is first checking if the first flag and the bucket are touching then putting the flag back at the top.
         // if((Math.abs(300-y[0] )<1)&&
-        if((checkforhitsvar0>(y[n])) && ((y[n]+flag_height)>checkforhitsvar1) &&      
-        (Math.abs(dogX-x[n])<flag_width)){
+        if ((checkforhitsvar1 > (y[n])) && ((y[n] + flag_height) > checkforhitsvar1) &&
+            //(Math.abs(dogX-x[n])<flag_width)){
+            ((x[n] - rectWidth) < dogX) && (dogX < (x[n] + flag_width))){
             // score+=2;
-            y[n]=-80; x[n]=Math.random()*600;
-            if (nTarget-level==n){
-                nTarget+=1;
-                changeTargetFlag(nTarget);
-                score=nTarget;
-                if (nTarget==220){
-                    isYouWin='true';
-                }
-                if (nTarget==level+5){
-                    isNextLevel='true';
-                }
-            } else {
-                isGameOver='true';
+            y[n] = -80; x[n] = Math.random() * 600;
+        if (nTarget - level == n) {
+            nTarget += 1;
+            changeTargetFlag(nTarget);
+            score = nTarget;
+            if (nTarget == 220) {
+                isYouWin = 'true';
             }
+            if (nTarget == level + 5) {
+                isNextLevel = 'true';
+            }
+        } else {
+            isGameOver = 'true';
         }
     }
+}
 
 
-    function flagOffScreen(n){
-        if(y[n]>game_height-30){
-            y[n]=-80; x[n]=Math.random()*game_width;
+    function flagOffScreen(n) {
+        if (y[n] > game_height - 30) {
+            y[n] = -80; x[n] = Math.random() * game_width;
             //newarray+=1;
         }
     }
-        
-        
 
-        
-    function gameOver(){
+
+
+
+    function gameOver() {
         clearInterval(gameTimer);
-        ctx.font="80ps Arial";
-        ctx.clearRect(0,0,game_width,game_height);
-        ctx.fillText("Game Over!",halfofgame_width-95,50);
-        ctx.fillText("Score: " + score, halfofgame_width-65, 100);
-        ctx.fillText(targetCountryName,20,180);
+        ctx.font = "80ps Arial";
+        ctx.clearRect(0, 0, game_width, game_height);
+        ctx.fillText("Game Over!", halfofgame_width - 95, 50);
+        ctx.fillText("Score: " + score, halfofgame_width - 65, 100);
+        ctx.fillText(targetCountryName, 20, 180);
         //var blobImage=document.getElementById(imageOfBlob);
-        var targetCountryImg=document.getElementById(targetCountryName);
-        ctx.drawImage(targetCountryImg,20,220,200,160);
-        
+        var targetCountryImg = document.getElementById(targetCountryName);
+        ctx.drawImage(targetCountryImg, 20, 220, 200, 160);
+
     }
 
 
 
-    function youWin(){
+    function youWin() {
         clearInterval(gameTimer);
-        ctx.font="80ps Arial";
-        ctx.clearRect(0,0,game_width,game_height);
-        ctx.fillText("You Beat The Game!",halfofgame_width-140,50);
+        ctx.font = "80ps Arial";
+        ctx.clearRect(0, 0, game_width, game_height);
+        ctx.fillText("You Beat The Game!", halfofgame_width - 140, 50);
         ctx.fillText("Score: " + score, 255, 100);
     }
 
 
 
 
-    function NextLevel(){
+    function NextLevel() {
         clearInterval(gameTimer);
-            ctx.font="80ps Arial";
-            ctx.clearRect(0,0,game_width,game_height);
-            ctx.fillText("Next Level!",halfofgame_width-90,230);
-            ctx.fillText("Score: " + score, halfofgame_width-65, 280);
-            nextLevelButton.hidden=false;
+        ctx.font = "80ps Arial";
+        ctx.clearRect(0, 0, game_width, game_height);
+        ctx.fillText("Next Level!", halfofgame_width - 90, 230);
+        ctx.fillText("Score: " + score, halfofgame_width - 65, 280);
+        nextLevelButton.hidden = false;
     }
-
 }
+
 // utility functions
 
 
 
-  function keyPressed(e){
+function keyPressed(e) {
     //console.log('e',e)
-    var k=e.keyCode;
-    if(k==37){changeX=-4;}
-    if(k==39){changeX=4 ;}
-  }
+    var k = e.keyCode;
+    if (k == 37) { changeX = -4; }
+    if (k == 39) { changeX = 4; }
+}
 
-  function idArrayToImgArray(arrayOfIds){
-    var arrayOfImgs=[];
-    for (var a=0; a<arrayOfIds.length; a++){
-        arrayOfImgs[a]=document.getElementById(arrayOfIds[a])
+function idArrayToImgArray(arrayOfIds) {
+    var arrayOfImgs = [];
+    for (var a = 0; a < arrayOfIds.length; a++) {
+        arrayOfImgs[a] = document.getElementById(arrayOfIds[a])
     }
     return arrayOfImgs
 }
 
 
 
-function shuffleArray(array){
+function shuffleArray(array) {
     let newarray = [...array]
-    for (let i = newarray.length - 1;i>0;i--){
-      const j=Math.floor(Math.random()*(i+1));
-      [newarray[i], newarray[j]]=[newarray[j], newarray[i]];
+    for (let i = newarray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [newarray[i], newarray[j]] = [newarray[j], newarray[i]];
     }
-    return newarray;
-  }
+    return newarray
+}
