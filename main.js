@@ -1,29 +1,33 @@
 
 var ctx = gameCanvas.getContext("2d");
 
-var percentWidth = 100;
-var percentHeight = 92;
+// var percentWidth = 100;
+// var percentHeight = 92;
 
-function vh(percentHeight) {
-    var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-    return (percentHeight * h) / 100;
-}
+// function vh(percentHeight) {
+//     var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+//     return (percentHeight * h) / 100;
+// }
 
-function vw(percentWidth) {
-    var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-    return (percentWidth * w) / 100;
-}
+// function vw(percentWidth) {
+//     var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+//     return (percentWidth * w) / 100;
+// }
 
-var game_width = vw(percentWidth);
-var game_height = (game_width / 8) * 6;
-if (game_height > screen.height) {
-    console.log("ggg")
-    game_height=0
-    game_width=0
-    game_height = vh(percentHeight);
-    game_width = (game_height * 8) / 6;
-}
-console.log("game_width", game_width)
+// var game_width = vw(percentWidth);
+// var game_height = (game_width / 8) * 6;
+// if (game_height > screen.height) {
+//     console.log("ggg")
+//     game_height=0
+//     game_width=0
+//     game_height = vh(percentHeight);
+//     game_width = (game_height * 8) / 6;
+// }
+// console.log("game_width", game_width)
+
+
+var game_height=gameCanvas.style.height;
+var game_width=gameCanvas.style.width;
 // flag arrays
 //const flags=['russia','albania','belgium','bosnia_and_herzegovina','bulgaria','czechia','estonia','france','germany','ireland','italy','lithuania','malta','san-marino','serbia','spain','sweden','switzerland','ukraine','vatican_city']
 //const flags=['afghanistan','albania','algeria','andorra','angola','atigua_and_barbuda','arab_league','argentina','armenia','aruba','australia','austria','azerbaijan','bahamas','bahrain','bangladesh','barbados','belarus','belgium','belize','benin','bhutan','bolivia','bonaire','bosnia_and_herzegovina','botswana','brazil','bruinei','bulgaria','burkina_faso','burundi','cambodia','cameroon','canada','cape_verde','central_african_republic','chad','chile','china','colombia','comoros','costa_rica',"cote_d'ivoire",'croatia','cuba','curacao','cuprus','czechia','democratic_republic_of_congo','denmark','djibouti','dominica','dominican_republic','east_timor','ecuador','egypt','el_salvador','england','equatorial_guinea','eritrea','estonia','ethiopia','europe','faroe_islands','fiji','finland','france','gabon','gambia','georgia','germany','ghana','greece','greenland','grenada','guadeloupe','guam','guatemala','guinea','bissau ']
