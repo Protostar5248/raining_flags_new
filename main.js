@@ -4,25 +4,31 @@ var ctx = gameCanvas.getContext("2d");
 var percentWidth = 100;
 var percentHeight = 92;
 
-function vh(percentHeight) {
+function ch(percentHeight) {
     var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
     return (percentHeight * h) / 100;
 }
 
-function vw(percentWidth) {
+function cw(percentWidth) {
     var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
     return (percentWidth * w) / 100;
 }
+// var game_width = cw(percentWidth);
+// var game_height = (game_width / 8) * 6;
+// if (game_height > screen.height) {
+//     console.log("ggg")
+//     game_height=0
+//     game_width=0
+//     game_height = ch(percentHeight);
+//     game_width = (game_height * 8) / 6;
+// }
 
-var game_width = vw(percentWidth);
-var game_height = (game_width / 8) * 6;
-if (game_height > screen.height) {
-    console.log("ggg")
-    game_height=0
-    game_width=0
-    game_height = vh(percentHeight);
-    game_width = (game_height * 8) / 6;
-}
+
+if (game_height>ch(percentHeight)) {
+    var cha=ch(percentHeight);
+    game_height=cha*0.98;
+    game_width=(game_height*8)/6;
+  }
 console.log("game_width", game_width)
 
 
